@@ -1,6 +1,6 @@
 Primeiro, se foi criado o DockerFile utilizando a imagem do MySql.
 
-Depois, criei a imagem "mysql-devops" com o comando:
+Depois, criei a imagem "mysql-image" com o comando:
    docker build -t mysql-image -f api/db/Dockerfile .
 
 Depois de criar a imagem, criei o container, com o comando:
