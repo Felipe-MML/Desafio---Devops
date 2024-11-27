@@ -39,6 +39,8 @@ Após isso, criei o arquivo php para rodar a aplicação, criei a imagem e o con
     docker build -t php-image -f website/Dockerfile .
     docker run -d -v ${pwd}/website:/var/www/html -p 8888:80 --link node-container --rm --name php-container php-image
 
+Após isso, fiz o arquivo docker-compose.yaml, nele fiz as conexões entre os containers de banco de dados e da aplicação em si. 
+
 Lembrando que foi utilizado o NODE 10, pois utilizei um tutorial como referência para fazer o desafio. 
 
 Nome: Felipe Mateus Machado de Lima
