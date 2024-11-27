@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0  
+    container_name: mysql-programadorabordo
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword  
+      MYSQL_DATABASE: programadorabordo 
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpassword
+    ports:
+      - "3306:3306"  
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  
+    networks:
+      - mynetwork
+    
+  php:
+    build:
+      context: ./php-app
+      dockerfile: Dockerfile
+    container_name: php-container
+    ports:
+      - "8080:80"  
+    volumes:
+      - ./php-app:/var/www/html  
+    networks:
+      - mynetwork
+
+  node:
+    build:
+      context: ./node-app
+      dockerfile: Dockerfile
+    container_name: node-container
+    ports:
+      - "9001:9001"
+    networks:
+      - mynetwork
+    environment:
+      - NODE_ENV=production
+
+networks:
+  mynetwork:
+    driver: bridge
